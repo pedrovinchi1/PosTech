@@ -1,0 +1,7 @@
+*.pkl
+*.pt
+mlruns/
+__pycache__/
+.env
+data/processed/
+*.egg-info/
