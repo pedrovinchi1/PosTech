@@ -1,7 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+.venv/
+
+# ML artifacts
 *.pkl
 *.pt
 mlruns/
-__pycache__/
-.env
+mlflow.db
 data/processed/
-*.egg-info/
+
+# Local RAG / embeddings
+.lancedb/
+models/Xenova/
+
+# Data (raw splits ficam no repo, dataset original não)
+dataset.csv
+
+# OS
+NUL
+.DS_Store
+Thumbs.db
+.mcp.json
+CLAUDE.md
+desenvolvimento.md
