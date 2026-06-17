@@ -1,4 +1,5 @@
 import logging
+
 import pandas as pd
 
 logger = logging.getLogger(__name__)
@@ -17,5 +18,8 @@ def load_splits(base_dir: str = "data/raw") -> tuple[pd.DataFrame, ...]:
     train = pd.read_csv(f"{base_dir}/train.csv")
     val = pd.read_csv(f"{base_dir}/val.csv")
     test = pd.read_csv(f"{base_dir}/test.csv")
-    logger.info("Loaded splits", extra={"train": len(train), "val": len(val), "test": len(test)})
+    logger.info(
+        "Loaded splits",
+        extra={"train": len(train), "val": len(val), "test": len(test)},
+    )
     return train, val, test
