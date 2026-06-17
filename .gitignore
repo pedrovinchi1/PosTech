@@ -4,12 +4,15 @@ __pycache__/
 *.egg-info/
 .env
 .venv/
+.venv
 
 # ML artifacts
 *.pkl
 *.pt
 mlruns/
 mlflow.db
+notebooks/mlruns/
+notebooks/mlflow.db
 data/processed/
 
 # Local RAG / embeddings
@@ -26,3 +29,22 @@ Thumbs.db
 .mcp.json
 CLAUDE.md
 desenvolvimento.md
+.venv/Lib/site-packages/_virtualenv.pth
+.venv/Lib/site-packages/_virtualenv.py
+.venv/Lib/site-packages/distutils-precedence.pth
+.venv/Lib/site-packages/ipykernel_launcher.py
+.venv/Lib/site-packages/ipython_pygments_lexers.py
+.venv/Lib/site-packages/isympy.py
+.venv/Lib/site-packages/jupyter.py
+.venv/Lib/site-packages/PyWin32.chm
+.venv/Lib/site-packages/_distutils_hack/__init__.py
+.venv/Lib/site-packages/_distutils_hack/override.py
+.venv/Lib/site-packages/_pytest/__init__.py
+.venv/Lib/site-packages/_pytest/_argcomplete.py
+.venv/Lib/site-packages/_pytest/_version.py
+.venv/Lib/site-packages/_pytest/cacheprovider.py
+.venv/Lib/site-packages/_pytest/capture.py
+.venv/Lib/site-packages/_pytest/compat.py
+.venv/Lib/site-packages/_pytest/debugging.py
+.venv/Lib/site-packages/_pytest/deprecated.py
+.venv/Lib/site-packages/_pytest/doctest.py
