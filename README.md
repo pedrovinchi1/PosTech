@@ -2,6 +2,8 @@
 
 Projeto desenvolvido para o **Tech Challenge — Fase 1**, com o objetivo de construir um pipeline profissional de Machine Learning para previsão de churn de clientes de telecomunicações.
 
+Rede neural (MLP PyTorch) para previsão de churn em telecomunicações, com pipeline end-to-end profissional.
+
 O projeto utiliza o dataset **Telco Customer Churn** e implementa um fluxo end-to-end com:
 
 * Análise exploratória dos dados;
@@ -51,7 +53,9 @@ Como o falso negativo tem custo maior para o negócio, foi definido um threshold
 │   ├── eda_target_distribution.png
 │   ├── eda_tenure_churn.png
 │   ├── mlp_cost_threshold.png
-│   └── mlp_roc_pr_curves.png
+│   ├── model_card.md
+│   └── monitoring_plan.md
+│    
 ├── models/
 │   ├── best_mlp.pt
 │   ├── preprocessor.pkl
@@ -85,7 +89,18 @@ Como o falso negativo tem custo maior para o negócio, foi definido um threshold
 ├── requirements.txt
 └── README.md
 ```
+O projeto possui:
 
+* `src/data/` – loader + preprocessing pipeline
+* `src/models/` – baselines (sklearn) + MLP (PyTorch)
+* `src/evaluation/` – métricas AUC-ROC, PR-AUC, F1, custo negócio
+* `src/tracking/` – wrappers MLflow
+* `src/api/` – FastAPI + Pydantic + middleware
+* `tests/` – smoke, schema (pandera), API
+* `notebooks/` – EDA, baselines, experimentos MLP
+* `docs/` – ML Canvas, Model Card, plano de monitoramento
+* `data/raw/` – splits train/val/test
+* `models/` – artefatos serializados (.pkl, .pt)
 ---
 
 ## Tecnologias Utilizadas
@@ -104,6 +119,16 @@ Como o falso negativo tem custo maior para o negócio, foi definido um threshold
 * Matplotlib
 * Seaborn
 * XGBoost
+
+---
+
+## Setup
+Também é possível usar `uv` para criar o ambiente e instalar dependências:
+
+```bash
+uv venv .venv
+uv pip install -e ".[dev]"
+```
 
 ---
 
@@ -151,6 +176,8 @@ O dataset utilizado é o **Telco Customer Churn**, disponível no arquivo:
 data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv
 ```
 
+IBM Telco Customer Churn — 7.043 registros, 21 features, target binário (`Churn`).
+
 Os dados foram separados em:
 
 ```text
@@ -166,6 +193,25 @@ Churn
 ```
 
 Ela representa se o cliente cancelou ou não o serviço.
+
+---
+
+## Splits
+
+| Split | Linhas | Churn% |
+|-------|--------|--------|
+| Train | 5.633  | 26.5%  |
+| Val   | 705    | 26.5%  |
+| Test  | 705    | 26.5%  |
+
+---
+
+## Métricas alvo
+
+- AUC-ROC (ranking geral)
+- PR-AUC (foco em positivos)
+- F1
+- Custo de negócio (FN=$500, FP=$50)
 
 ---
 
@@ -359,6 +405,30 @@ Para verificar qualidade e padronização do código:
 
 ```bash
 make lint
+```
+
+---
+
+## Comandos
+
+```bash
+# Treinar baselines
+make train-baselines
+
+# Treinar MLP
+make train-mlp
+
+# Rodar API
+make run-api
+
+# Testes
+make test
+
+# Lint
+make lint
+
+# MLflow UI
+.venv/Scripts/mlflow ui
 ```
 
 ---
