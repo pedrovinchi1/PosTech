@@ -1,4 +1,6 @@
-PYTHON = .venv/Scripts/python.exe
+# Usa o python do venv ativado. Cross-platform (Mac/Linux/Windows).
+# Sobrescreva se necessário: make PYTHON=python3 <alvo>
+PYTHON ?= python
 
 lint:
 	$(PYTHON) -m ruff check src/ tests/
